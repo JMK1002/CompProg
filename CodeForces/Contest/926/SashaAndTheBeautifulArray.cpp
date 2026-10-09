@@ -1,0 +1,21 @@
+//
+// Created by JMKov on 3/2/2024.
+//
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        int n;
+        cin >> n;
+        int arr[n];
+        for (int i = 0; i < n; i++) cin >> arr[i];
+        sort(arr, arr + n);
+        cout << (arr[n - 1] - arr[0]) << endl;
+    }
+    return 0;
+}

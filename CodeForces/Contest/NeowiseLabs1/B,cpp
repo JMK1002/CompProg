@@ -1,0 +1,46 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+long long n, k;
+long long l[200005];
+long long r[200005];
+
+void solve() {
+	cin >> n >> k;
+	for (long long i = 0; i < n; i++) cin >> l[i];
+	for (long long i = 0; i < n; i++) cin >> r[i];
+	for (long long i = 0; i < n; i++) {
+		if (l[i] > r[i]) swap(l[i], r[i]);
+	}
+	long long lt = 0;
+	long long rt = 0;
+	for (long long i = 0; i < n; i++) {
+		lt += l[i];
+		rt += r[i];
+	}
+	sort(l, l + n);
+	sort(r, r + n);
+	reverse(l, l + n);
+	reverse(r, r + n);
+	// long long ans = 0;
+	for (long long i = 0; i < k - 1; i++) {
+		lt += r[i];
+		rt += l[i];
+	}
+	lt++;
+	rt++;
+	cout << max(lt, rt) << endl;
+
+}
+
+int main() {
+	istream::sync_with_stdio(0);
+	cin.tie(nullptr);
+	long long t;
+	cin >> t;
+	while (t--) {
+		solve();
+	}
+	return 0;
+}
