@@ -1,0 +1,32 @@
+[
+	{
+		"label": "C/C++: g++ build and run active file",
+		"command": "g++",
+		"args": [
+			"-I$ZED_WORKTREE_ROOT/mBIT",
+			"-fdiagnostics-color=always",
+			"-g",
+			"-O2",
+			"$ZED_FILE",
+			"-o",
+			"$ZED_WORKTREE_ROOT/bin/$ZED_STEM",
+			"\n",
+			"$ZED_WORKTREE_ROOT/bin/$ZED_STEM",
+		],
+		"use_new_terminal": false,
+		"allow_concurrent_runs": true,
+		"reveal": "always",
+		"reveal_target": "dock",
+	},
+	{
+		"label": "Python: Run current file",
+		"command": "python",
+		"args": [
+			"$ZED_FILE"
+		],
+		"cwd": "$ZED_WORKTREE_ROOT",
+		"save": "current",
+		"use_new_terminal": false,
+		"allow_concurrent_runs": false
+	}
+]

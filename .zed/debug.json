@@ -1,0 +1,23 @@
+[
+	{
+		"label": "Launch Debug (CodeLLDB)",
+		"adapter": "CodeLLDB",
+		"request": "launch",
+		"program": "$ZED_WORKTREE_ROOT/bin/$ZED_STEM",
+		"cwd": "$ZED_WORKTREE_ROOT",
+		// "args": ["-n=1", "-m=7", "-p=0"],
+		"build": {
+			"command": "g++",
+			"args": [
+				"-I$ZED_WORKTREE_ROOT/mBIT",
+				"-std=c++17",
+				"-fdiagnostics-color=always",
+				"-g",
+				"-O0",
+				"$ZED_FILE",
+				"-o",
+				"$ZED_WORKTREE_ROOT/bin/$ZED_STEM",
+			],
+		},
+	},
+]

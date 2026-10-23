@@ -1,35 +1,38 @@
-#include <iostream>
-#include <algorithm>
+#include <bits/stdc++.h>
 using namespace std;
+
+#define int long long
 
 int n;
 int arr[200005];
 
 void solve() {
 	cin >> n;
+	map<int, int> asdf;
+	vector<int> a;
 	for (int i = 0; i < n; i++) {
 		cin >> arr[i];
+		asdf[arr[i]]++;
 	}
-	int ans = 0;
+	sort(arr, arr + n);
 	for (int i = 0; i < n; i++) {
-		int cnt = 1 + (arr[i] != arr[n - 1]);
-		int	r = n - 1;
-		while (true) {
-			int ind = upper_bound(arr + i, arr + n, (arr[i] + arr[r]) / 2) - arr - 1;
-			if (arr[i] == arr[ind]) {
-				cnt += ind - i;
-				break;
-			}
-			r = ind;
-			cnt++;
-		}
-		ans = max(ans, cnt);
+		if (!i || arr[i - 1] != arr[i]) a.push_back(arr[i]);
 	}
-	cout << n - ans << endl;
-	for (int i = 0; i <= n; i++) arr[i] = 0;
+	int res = asdf[a[a.size() - 1]];
+	for (int i = 0; i < a.size() - 1; i++) {
+		int cnt = asdf[a[i]];
+		int ind = i + 1;
+		while (ind != a.size()) {
+			cnt++;
+			ind = lower_bound(a.begin(), a.end(), a[i] + 2 * (a[ind] - a[i])) - a.begin();
+
+		}
+		res = max(res, cnt);
+	}
+	cout << n - res << endl;
 }
 
-int main() {
+signed main() {
 	istream::sync_with_stdio(0);
 	cin.tie(nullptr);
 	int t;
